@@ -13,70 +13,73 @@ void natural3nums(int num);
 double sinus(double x);
 int neastprime(int n);
 
-void main () {
+void main() {
 	int option, num;
 	double doubleNum;
-	cout<< "Menu:\n\n0. Exit\n1. Display triangle1\n2. Display triangle2\n3. sum of digits\n4. sum of 3 natural numbers\n5.sinus\n6.neastprime\n\n";
+	cout << "Menu:\n\n0. Exit\n1. Display triangle1\n2. Display triangle2\n3. sum of digits\n4. sum of 3 natural numbers\n5.sinus\n6.neastprime\n\n";
 	do {
-		cout<<"Enter your choice (0-6):"<<endl;
-		cin>> option;
+		cout << "Enter your choice (0-6):" << endl;
+		cin >> option;
 
-		if(option==1) {
-			cin>>num;
+		if(option == 1) {
+			cin >> num;
 			triangle1(num);
 		}
-		if(option==2) {
-			cin>>num;
+		if(option == 2) {
+			cin >> num;
 			triangle2(num);
 		}
-		if(option==3) {
-			cin>>num;
-			cout<<digits_sum(num)<<endl;;
+		if(option == 3) {
+			cin >> num;
+			cout << digits_sum(num) << endl;;
 		}
-		if(option==4) {
-			cin>>num;
+		if(option == 4) {
+			cin >> num;
 			natural3nums(num);
 		}
-		if(option==5) {
-			cin>>doubleNum;
-			cout<<sinus(doubleNum)<<endl;
+		if(option == 5) {
+			cin >> doubleNum;
+			cout << sinus(doubleNum) << endl;
 		}
-		if(option ==6) {
-			cin>>num;
-			cout<<neastprime(num)<<endl;
+		if(option == 6) {
+			cin >> num;
+			cout << neastprime(num) << endl;
 		}
 	}
-	while(option!=0);
+	while(option != 0);
 }
 
+//A program that shows a "silver triangle" whose number of rows and columns is the number it receives and its shape is ◣
 void triangle1(int num) {
 	string triang = "";
 	int temp = 1;
-	for ( int i = num; i > 0; i -- ) {
-		for ( int j = temp; j > 0; j -- )
+	for(int i = num; i > 0; i --) {
+		for(int j = temp; j > 0; j --)
 			triang += "*";
 		triang += "\n";
-		temp ++;
+		temp++;
 	}
 	cout << triang;
 }
 
+//A program that shows a "silver triangle" whose number of rows and columns is the number it receives and its shape is ◤
 void triangle2(int num) {
 	string triang = "";
 	int temp = num;
-	for ( int i = 1; i <= num; i ++ ) {
-		for ( int j = 0; j < temp; j ++ )
+	for(int i = 1; i <= num; i ++) {
+		for(int j = 0; j < temp; j ++)
 			triang += "*";
 		triang += "\n";
-		temp --;
+		temp--;
 	}
 	cout << triang;
 }
 
+//A program that returns the sum of the digits of the input number
 int  digits_sum(int num) {
-	int sum=0;
+	int sum = 0;
 	int x;
-	while ( num > 0 ) {
+	while(num > 0) {
 		x = num % 10;
 		num = num / 10;
 		sum += x;
@@ -84,45 +87,49 @@ int  digits_sum(int num) {
 	return sum;
 }
 
+//A program that shows all the options to put together the number it gets
 void natural3nums(int num) {
 	string str;
 	for(int i = 1; i < num; i++) {
 		for(int j = 1; j < num; j++) {
 			for(int k = 1; k < num; k++) {
 				if((i + j + k == num) && (i != j) && (i != k) && (j != k) && (j > i) && (k > j)) {
-					str = std::to_string(i)+"+"+std::to_string(j)+"+"+std::to_string(k);
-					cout << str <<endl;
+					str = std::to_string(i) + "+" + std::to_string(j) + "+" + std::to_string(k);
+					cout << str << endl;
 				}
 			}
 		}
 	}
 }
 
+//A program that returns a sin of the input number using the Taylor column
 double sinus(double x) {
 	double M_PI = 3.14;
 	int flag = 0;
 	double sinx = 0, factorial;
-	while ((x > (2 * M_PI)) || (x < (-2 * M_PI))) {
-		if (x > (2 * M_PI))
+	while((x > (2 * M_PI)) || (x < (-2 * M_PI))) {
+		if(x > (2 * M_PI))
 			x = x - 2 * M_PI;
 		else
 			x = x + 2 * M_PI;
 	}
-	for (int i = 1; i <= 21; i = i + 2) {
+	for(int i = 1; i <= 21; i = i + 2) {
 		factorial = 1;
-		for ( int j = 1; j <= i; j ++ )
+		for(int j = 1; j <= i; j ++)
 			factorial = factorial * j;
-		if ( flag == 0 ) {
-			sinx = sinx + ( pow ( x, i ) / factorial );
+		if(flag == 0) {
+			sinx = sinx + (pow(x, i) / factorial);
 		flag = 1;
 		}
 		else {
-			sinx = sinx - ( pow ( x, i ) / factorial );
+			sinx = sinx - (pow(x, i) / factorial);
 			flag = 0;
 		}
 	}
 	return sinx;
 }
+
+//A program that receives a natural number, and returns the closest prime number to it
 int neastprime(int n) {
 	int result = 0;
 	int prime = 1;
