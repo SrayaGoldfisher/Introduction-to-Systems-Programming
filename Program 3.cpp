@@ -1,42 +1,43 @@
 #include <iostream>
 using namespace std;
 
-double large_of_average (double a[], int size);
-int sum_negative (int arr[], int size);
-int distance (int arr[], int size);
-bool symmetry (int matrix[][3], int size);
+double large_of_average(double a[], int size);
+int sum_negative(int arr[], int size);
+int distance(int arr[], int size);
+bool symmetry(int matrix[][3], int size);
 
-void main () {
+void main() {
 	int option, num, size;
 	double doubleNum;
-	cout<< "Menu:\n0. Exit\n1. Display a percent of elements bigger on average \n2. Display a sum of negative elements\n3. Difference between the largest and smallest elements in an array\n4. Is matrix symmetric\n";
+	cout << "Menu:\n0. Exit\n1. Display a percent of elements bigger on average \n2. Display a sum of negative elements\n3. Difference between the largest and smallest elements in an array\n4. Is matrix symmetric\n";
 	do {
-		cout<<"Enter your choice (0-5):"<<endl;
-		cin>> option;
-		if(option==1) {
+		cout << "Enter your choice (0-5):" << endl;
+		cin >> option;
+		
+		if(option == 1) {
 			int size;
-			cin>>size;
+			cin >> size;
 			double* a = new double[size];
-			for(int i=0; i<size; i++) {
-				cin>>a[i];
+			for(int i = 0; i < size; i++) {
+				cin >> a[i];
 			}
 			double percent = large_of_average (a, size);
 		}
-		if(option==2) {
+		if(option == 2) {
 			int size;
-			cin>>size;
+			cin >> size;
 			int* arr = new int[size];
-			for(int i=0; i<size; i++) {
-				cin>>arr[i];
+			for(int i = 0; i < size; i++) {
+				cin >> arr[i];
 			}
 			int sum = sum_negative (arr, size);
 		}
-		if(option==3) {
+		if(option == 3) {
 			int size;
-			cin>>size;
+			cin >> size;
 			int* arr = new int[size];
-			for(int i=0; i<size; i++) {
-				cin>>arr[i];
+			for(int i = 0; i < size; i++) {
+				cin >> arr[i];
 			}
 			int dis = distance (arr, size);
 		}
@@ -44,8 +45,8 @@ void main () {
 			int matrix[3][3];
 			int size;
 			cin >> size;
-			for(int i = 0; i < 3; i ++)
-				for(int j = 0; j < 3; j ++)
+			for(int i = 0; i < 3; i++)
+				for(int j = 0; j < 3; j++)
 					cin >> matrix[i][j];
 			bool result = symmetry (matrix, size);
 		}
@@ -53,7 +54,8 @@ void main () {
 	while(option != 0);
 }
 
-double large_of_average (double a[], int size) {
+//A program that receives an array of real numbers and its size and returns the percentage of organs in the array that are really larger than average
+double large_of_average(double a[], int size) {
 	double* arr = new double[size];
 	double sum = 0;
 	double average = 0;
@@ -62,25 +64,26 @@ double large_of_average (double a[], int size) {
 	int flag = 0;
 	double sizeD = size;
 	arr = a;
-	for(int i = 0; i < size; i ++) {
+	for(int i = 0; i < size; i++) {
 		sum += a[i];
 	}
 	average = sum / size;
-	for(int j = 0; j < size; j ++) {
+	for(int j = 0; j < size; j++) {
 		if(a[j] > average) {
-			x ++;
+			x++;
 		}
 	}
-	percent = x/sizeD;
+	percent = x / sizeD;
 	delete []arr;
 	return percent;
 }
 
-int sum_negative (int arr[], int size) {
+//A program that receives an array of integers and its size, the function returns the sum of all the negative members in the array
+int sum_negative(int arr[], int size) {
 	int* arrTemp = new int[size];
 	int sum = 0;
 	arrTemp = arr;
-	for(int i = 0; i < size; i ++) {
+	for(int i = 0; i < size; i++) {
 		if(arrTemp[i] < 0) {
 			sum += arrTemp[i];
 		}
@@ -89,20 +92,21 @@ int sum_negative (int arr[], int size) {
 	return sum;
 }
 
-int distance (int arr[], int size) {
+//A program that returns the difference between the largest organ and the smallest organ in the array
+int distance(int arr[], int size) {
 	int* arrTemp = new int[size];
 	arrTemp = arr;
 	int distance, max, min;
-	if(size==0)
+	if(size == 0)
 		return 0;
 	else {
-		min=arrTemp[0];
-		max=arrTemp[0];
+		min = arrTemp[0];
+		max = arrTemp[0];
 	}
-	for(int i=0; i<size; i++) {
-		if(arrTemp[i]<min)
-			min=arrTemp[i];
-		if(arrTemp[i]>max)
+	for(int i = 0; i < size; i++) {
+		if(arrTemp[i] < min)
+			min = arrTemp[i];
+		if(arrTemp[i] > max)
 			max = arrTemp[i];
 	}
 	distance = max - min;
@@ -110,13 +114,14 @@ int distance (int arr[], int size) {
 	return distance;
 }
 
-bool symmetry (int matrix[][3], int size) {
+//A program that checks whether a quadratic matrix is diagonal
+bool symmetry(int matrix[][3], int size) {
 	int flag = 0;
 	if(size != 3)
 		return false;
-	for(int i = 0; i < size; i ++) {
-		for(int j = 0; j < size; j ++) {
-			if (matrix[i][j] != matrix[j][i])
+	for(int i = 0; i < size; i++) {
+		for(int j = 0; j < size; j++) {
+			if(matrix[i][j] != matrix[j][i])
 				flag = 1;
 		}
 	}
@@ -124,7 +129,7 @@ bool symmetry (int matrix[][3], int size) {
 		delete[] matrix[i];
 	delete[] matrix;
 	*/
-	if (flag == 0)
+	if(flag == 0)
 		return true;
 	else
 		return false;
